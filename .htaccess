@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+# 除外設定(以下のurl出会った場合そのまま素通り)
+RewriteRule ^index\.php$ / [R=301]
+RewriteCond %{REQUEST_URI} !^/index.php/.*
+RewriteCond %{REQUEST_URI} !^/webroot/
+RewriteCond %{REQUEST_URI} !^/.well-known
+
+
+# すべてのリクエストを index.php/xxx にリダイレクト
+# RewriteCond %{REQUEST_URI} !^/index.php
+# RewriteRule ^(/index.php)$ /home [R=301,L]
+# index.php へのアクセスをルート (/) にリダイレクト
+RewriteRule (.*) /index.php/$1 [L]
